@@ -10,10 +10,10 @@ The code repeatedly performs the memory reservation operation within a specified
 
 +++
 
-Tämä repository sisältää muistin hyödyntämiskoodin, joka kohdistuu explorer.exe-prosessiin Windows-järjestelmissä. Hyökkäys varaa virtuaalimuistialueita kohdeprosessissa, mikä voi johtaa järjestelmän epävakaisuuteen ja täytyy suorittaa täysi järjestelmän uudelleenkäynnistys.
+Tämä repo sisältää muistin hyödyntämiskoodin, joka kohdistuu explorer.exe-prosessiin Windows-järjestelmissä. Hyökkäyksen yhteydessä varataan virtuaalimuistialueita kohdeprosessissa, mikä voi johtaa järjestelmän epävakaisuuteen ja jolloin saattaa olla tarpeen suorittaa täysi järjestelmän uudelleenkäynnistys.
 
 ### Toimintaperiaate
 
-Hyökkäys hyödyntää `VirtualAllocEx`-funktiota Windows API:sta varatakseen virtuaalimuistialueita explorer.exe-prosessissa. Se etsii vapaata muistialuetta määritellyltä osoitealueelta ja varaa muistia kutsuen `VirtualAllocEx`-funktiota `MEM_RESERVE`-lipun kanssa. Hyökkäys käyttää `VirtualQueryEx`-funktiota prosessin muistitietojen tiedustelemiseen.
+Hyökkäys hyödyntää VirtualAllocEx-funktiota Windows API:sta varatakseen virtuaalimuistialueita explorer.exe-prosessissa. Se etsii vapaata muistialuetta määritellyltä osoitealueelta ja varaa muistia kutsuen VirtualAllocEx-funktiota MEM_RESERVE-lipun kanssa. Hyökkäys käyttää VirtualQueryEx-funktiota prosessin muistitietojen tiedustelemiseen.
 
-Koodi suorittaa toistuvasti muistinvarausoperaation määritellyllä osoitealueella. Hyökkäys tasaa muistiosoitteet, tiedustelee muistitietoja `VirtualQueryEx`-funktiolla ja varaa muistin `VirtualAllocEx`-funktiolla. Tämä prosessi jatkuu, kunnes koko osoitealue on käyty läpi tai tapahtuu virhe.
+Koodi suorittaa toistuvasti muistinvarausoperaation määritellyllä osoitealueella. Hyökkäys tasaa muistiosoitteet, tiedustelee muistitietoja VirtualQueryEx-funktiolla ja varaa muistin VirtualAllocEx-funktiolla. Tämä prosessi jatkuu, kunnes koko osoitealue on käyty läpi tai tapahtuu virhe.
