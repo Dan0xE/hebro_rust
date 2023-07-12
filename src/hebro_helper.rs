@@ -8,7 +8,7 @@ use winapi::um::tlhelp32::{
     CreateToolhelp32Snapshot, Process32First, Process32Next, PROCESSENTRY32, TH32CS_SNAPPROCESS,
 };
 
-pub fn get_pid(process_name: String) -> usize {
+pub fn get_pid(process_name: &str) -> usize {
     let h_snapshot: *mut winapi::ctypes::c_void;
     let mut pe: PROCESSENTRY32 = unsafe { std::mem::zeroed() };
     let mut pid: usize = 0;

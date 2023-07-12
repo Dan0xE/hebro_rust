@@ -32,7 +32,8 @@ where
 }
 
 fn main() {
-    let pid: usize = hebro_helper::get_pid("explorer.exe".to_string());
+    let pid: usize = hebro_helper::get_pid("explorer.exe");
+
     if pid != 0 {
         let proc: HANDLE = unsafe { OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid as u32) };
 
